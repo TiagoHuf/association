@@ -1,17 +1,37 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# db/seeds.rb
+require 'faker'
+require 'cpf_cnpj'
 
-User.destroy_all
+# Crie um usuário de exemplo
+User.create(
+  email: 'admin@example.com',
+  encrypted_password: 'password' # É altamente recomendável não usar senhas em texto plano em um ambiente de produção
+)
 
-User.create email: 'admin@admin.com', password: '111111'
+# Crie mais alguns usuários aleatórios e armazene seus IDs
+user_ids = []
+50.times do
+  user = User.create(
+    email: Faker::Internet.email,
+    encrypted_password: Faker::Internet.password
+  )
+  user_ids << user.id
+end
 
-puts "Usuário criado:"
-puts "login admin@admin.com"
-puts "111111"
+100.times do
+  Person.create(
+    name: Faker::Name.name,
+    phone_number: Faker::PhoneNumber.phone_number,
+    national_id: CPF.generate,
+    active: Faker::Boolean.boolean,
+    user_id: user_ids.sample # Seleciona aleatoriamente um dos IDs armazenados
+  )
+end
+
+500.times do
+  Debt.create(
+    person_id: Faker::Number.between(from: 1, to: 100), # Supondo que existem 100 pessoas na tabela people
+    amount: Faker::Number.decimal(l_digits: 2),
+    observation: Faker::Lorem.sentence
+  )
+end
