@@ -4,6 +4,8 @@ require 'cpf_cnpj'
 Debt.destroy_all
 Person.destroy_all
 User.destroy_all
+Debt.destroy_all
+Person.destroy_all
 
 User.create(
   email: 'admin@admin.com',
