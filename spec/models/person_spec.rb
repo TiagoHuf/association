@@ -4,6 +4,7 @@ RSpec.describe Person, type: :model do
   describe 'associations' do
     it { should belong_to(:user).optional }
     it { should have_many(:debts) }
+    it { should have_many(:payments) }
   end
 
   describe 'validations' do
@@ -32,7 +33,11 @@ RSpec.describe Person, type: :model do
       debt2 = person.debts.build(amount: 200)
       debt3 = person.debts.build(amount: 300)
 
-      expect(person.total_debts).to eq(-600)
+      payment1 = person.payments.build(amount: 10)
+      payment2 = person.payments.build(amount: 20)
+      payment3 = person.payments.build(amount: 30)
+
+      expect(person.total_debts).to eq(-540)
     end
 
     it 'returns 0 if there are no debts' do

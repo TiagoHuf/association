@@ -43,3 +43,12 @@ end
     )
   puts "Criando conta: #{count}"
 end
+
+15000.times do |count|
+  Payment.create(
+    person_id: person_ids.sample,
+    amount: Faker::Number.decimal(l_digits: 2),
+    paid_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
+    )
+  puts "Criando pagamento: #{count}"
+end
