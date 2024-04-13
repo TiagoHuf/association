@@ -57,7 +57,7 @@
           <% end %>
         </td>
         <td class="text-end align-middle">
-          <%= number_to_currency(person.total_debts, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %>
+          <%= number_to_currency(person.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %>
         </td>
         <td class="text-center align-middle">
           <div class="btn-group" role="group" aria-label="Actions">
