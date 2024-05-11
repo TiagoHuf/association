@@ -54,6 +54,11 @@ gem 'rails_performance'
 gem 'will_paginate', '~> 4.0'
 gem "chartkick"
 
+group :development do
+  gem 'letter_opener'
+end
+
+
 gem 'faker'
 
 gem 'rails_performance'
