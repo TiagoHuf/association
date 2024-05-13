@@ -55,7 +55,7 @@ gem 'will_paginate', '~> 4.0'
 gem "chartkick"
 
 group :development do
-  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 

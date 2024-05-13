@@ -7,15 +7,16 @@
         <table class="table">
           <tr>
             <td>Total de pagamentos</td>
-            <td class="text-end"><%= @dashboard_service.total_payments %></td>
+            
+            <td class="text-end"><%= number_to_currency(@dashboard_service.total_payments, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
           <tr>
             <td>Total de débitos</td>
-            <td class="text-end"><%= @dashboard_service.total_debts %></td>
+            <td class="text-end"><%= number_to_currency(@dashboard_service.total_debts, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
           <tr>
             <td>Saldo</td>
-            <td class="text-end"><%= @dashboard_service.amount %></td>
+            <td class="text-end"><%= number_to_currency(@dashboard_service.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
         </table>
 
@@ -23,7 +24,7 @@
         <table class="table">
           <tr>
             <td><%= @dashboard_service.top_person.name %></td>
-            <td class="text-end"><%= @dashboard_service.top_person.amount %></td>
+            <td class="text-end"><%= number_to_currency(@dashboard_service.top_person.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
         </table>
 
@@ -31,7 +32,7 @@
         <table class="table">
           <tr>
             <td><%= @dashboard_service.bottom_person.name %></td>
-            <td class="text-end"><%= @dashboard_service.bottom_person.amount %></td>
+            <td class="text-end"><%= number_to_currency(@dashboard_service.bottom_person.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
         </table>
         </div>
