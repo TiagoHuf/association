@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get 'reports/balance'
   # Defines the root path route ("/")
   root 'dashboard#index'
-  
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 end
