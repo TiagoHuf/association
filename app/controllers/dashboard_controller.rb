@@ -40,4 +40,8 @@ class DashboardController < ApplicationController
   def bottom_person
     @dashboard_service.bottom_person
   end
+  
+  def last_large_debts
+    @last_large_debts = @dashboard_service.last_large_debts
+  end
 end

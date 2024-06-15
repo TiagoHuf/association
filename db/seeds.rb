@@ -12,6 +12,12 @@ User.create(
   password: '1234567'
 )
 
+User.create(
+  email: 'admin2@admin.com',
+  password: '1234567'
+)
+
+
 user_ids = []
 50.times do |count|
   user = User.create(
@@ -23,7 +29,7 @@ user_ids = []
 end
 
 person_ids = []
-3000.times do |count|
+100000.times do |count|
   person = Person.create(
     name: Faker::Name.name,
     phone_number: Faker::PhoneNumber.phone_number,

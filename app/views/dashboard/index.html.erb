@@ -1,13 +1,12 @@
 <h1>Dashboard</h1>
 
 <div class="row">
-  <div class="col-12">
+  <div class="col-12 mb-4">
     <div class="card">
       <div class="card-body">
         <table class="table">
           <tr>
             <td>Total de pagamentos</td>
-            
             <td class="text-end"><%= number_to_currency(@dashboard_service.total_payments, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
           <tr>
@@ -35,14 +34,13 @@
             <td class="text-end"><%= number_to_currency(@dashboard_service.bottom_person.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
           </tr>
         </table>
-        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-6 mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Associados</h5>
@@ -51,7 +49,7 @@
     </div>
   </div>
 
-  <div class="col-6">
+  <div class="col-6 mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Meus últimos cadastros</h5>
@@ -62,11 +60,37 @@
         </ul>
       </div>
     </div>
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Últimos grandes débitos lançados</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome do Associado</th>
+              <th class="text-end">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @dashboard_service.last_large_debts.each do |debt| %>
+              <tr>
+                <td><%= debt.person ? debt.person.name : 'Desconhecido' %></td>
+                <td class="text-end"><%= number_to_currency(debt.amount, unit: 'R$', precision: 2, delimiter: '.', separator: ',') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="row mt-2">
-  <div class="col-6">
+  <div class="col-6 mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Últimos débitos</h5>
@@ -75,7 +99,7 @@
     </div>
   </div>
 
-  <div class="col-6">
+  <div class="col-6 mb-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Últimos pagamentos</h5>

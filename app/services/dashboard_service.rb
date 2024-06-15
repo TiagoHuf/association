@@ -46,7 +46,7 @@ class DashboardService
   
     def my_people
       Rails.cache.fetch("my_people_#{cache_key_user}", expires_in: 1.hour) do
-        Person.where(user: @current_user).order(:created_at).limit(10)
+        Person.where(user: @current_user).order(:created_at).limit(12)
       end
     end
   
@@ -62,6 +62,15 @@ class DashboardService
         end
       end
   
+    def last_large_debts
+        Rails.cache.fetch("last_large_debts", expires_in: 1.hour) do
+          Debt.includes(:person)
+              .where("amount > 100000")
+              .order(created_at: :desc)
+              .limit(8)
+        end
+      end
+      
     private
   
     def cache_key_user
