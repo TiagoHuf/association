@@ -5,15 +5,12 @@ class Person < ApplicationRecord
   has_many :debts, dependent: :destroy
   has_many :payments, dependent: :destroy
 
+  audited
+
   validates :name, :national_id, presence: true
   validates :national_id, uniqueness: true
   validate :cpf_or_cnpj
-
-  # TODO: refactor me
-  #
-  # - improve performance using SQL
-  # - sum payments
-  # - rename to "balance"
+  
   def total_debts
     debts_total = debts.sum(:amount)
     payments_total = payments.sum(:amount)
